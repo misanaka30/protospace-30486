@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :edit] 
-  before_action :move_to_index, only: [:edit] 
-  before_action :set_prototype, only: [:edit, :show]
+  before_action :move_to_index, only: [:edit, :destroy] 
+  before_action :set_prototype, only: [:edit, :show, :destroy]
  
 
   def index
@@ -42,8 +42,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    prototype = Prototype.find(params[:id])
-    prototype.destroy
+    @prototype.destroy
     redirect_to root_path
   end
 
